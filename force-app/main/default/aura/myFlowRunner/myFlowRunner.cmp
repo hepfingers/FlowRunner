@@ -1,0 +1,7 @@
+<aura:component access="global" implements="forceCommunity:availableForAllPageTypes">
+
+  <aura:handler name="init" value="{!this}" action="{!c.init}" />
+  <lightning:flow aura:id="flowData" />
+
+</aura:component>	
+

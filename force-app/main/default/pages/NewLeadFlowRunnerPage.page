@@ -1,0 +1,48 @@
+<apex:page>
+  <html>
+    <head>
+      <apex:stylesheet value="{!URLFOR($Resource.SLDS2_11_7, 'assets/styles/salesforce-lightning-design-system.min.css')}'" />
+      <apex:includeLightning />
+    </head>
+    <body class="slds-scope">
+      <div id="test">
+        test text
+      </div>
+      <div id="flowContainer" />
+        <!--<flow:interview name="Create_Lead"/>-->
+      
+      <script>
+        var statusChange = function (event) {
+          // Control what happens when the interview finishes
+
+          
+          var outputVariables = event.getParams("outputVariables");
+          var key;
+          for(key in outputVariables) {
+            if(outputVariables[key].name === "myOutput"){
+              // Do something with an output variable
+            }
+          
+          }
+          
+        };
+
+        $Lightning.use("c:externalFlowRunner", function() {
+          // Create the flow component and set the onsatatuschange attribute
+          $Lightning.createComponent("lightning:flow", {"onstatuschange":statusChange},
+            "flowContainer",
+            function(component) {
+              // Set the input variables
+              var inputVariables = [{}];
+
+              // Start an interview in the flowContainer div, and
+              // initializes the input variables.
+              component.startFlow("Create_Lead");
+            });
+        });
+      
+      </script>
+
+    </body>
+  </html>
+</apex:page>
